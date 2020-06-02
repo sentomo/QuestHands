@@ -207,31 +207,37 @@ class QUESTHANDS_API UQuestHandsFunctions : public UBlueprintFunctionLibrary
 public:
 
     /** Quest Hand tracking enabled state */
-    UFUNCTION(BlueprintPure, Category = "QuestHands")
+    //UE_DEPRECATED(4.25, "UQuestHandsFunctions::IsHandTrackingEnabled has been deprecated. Please use OculusInputFunctionLibrary::IsHandTrackingEnabled instead.")
+    UFUNCTION(BlueprintPure, Category = "QuestHands", meta = (DeprecatedFunction, DeprecationMessage = "Please use OculusInputFunctionLibrary::IsHandTrackingEnabled instead."))
     static bool IsHandTrackingEnabled();
 
     /**
      * Get the hand tracking state for a hand
      * Use this to update rendering, gestures, etc...
     */
-    UFUNCTION(BlueprintCallable, Category = "QuestHands", meta = (WorldContext = "WorldContextObject"))
+    UE_DEPRECATED(4.25, "UQuestHandsFunctions::GetTrackingState has been deprecated. Please use the individual info queries in OculusInputFunctionLibrary.")
+    UFUNCTION(BlueprintCallable, Category = "QuestHands", meta = (WorldContext = "WorldContextObject", DeprecatedFunction, DeprecationMessage = "Please use the individual info queries in OculusInputFunctionLibrary."))
     static bool GetTrackingState(const UObject* WorldContextObject, const EControllerHand Hand, const EQHandUpdateStep Step, FQHandTrackingState& stateOut);
 
     // Internal version for native, not blueprint accessible!
+    //UE_DEPRECATED(4.25, "UQuestHandsFunctions::GetTrackingState_Internal has been deprecated. Please use the individual info queries in OculusInputFunctionLibrary.")
     static bool GetTrackingState_Internal(const EControllerHand Hand, const EQHandUpdateStep Step, FQHandTrackingState& stateOut, const float worldToMeters);
 
     /**
      * Get the hand skeleton in its reference pose.
      * This is used to initialize a set of bones and collision capsules.
     */
-    UFUNCTION(BlueprintCallable, Category = "QuestHands", meta = (WorldContext = "WorldContextObject"))
+    UE_DEPRECATED(4.25, "UQuestHandsFunctions::GetHandSkeleton has been deprecated. Please use the individual info queries in OculusInputFunctionLibrary.")
+    UFUNCTION(BlueprintCallable, Category = "QuestHands", meta = (WorldContext = "WorldContextObject", DeprecatedFunction, DeprecationMessage = "Please use the individual info queries in OculusInputFunctionLibrary."))
     static bool GetHandSkeleton(const UObject* WorldContextObject, const EControllerHand Hand, FQHandSkeleton& skeletonOut);
 
     // Internal version for native, not blueprint accessible!
+    //UE_DEPRECATED(4.25, "UQuestHandsFunctions::GetHandSkeleton_Internal has been deprecated. Please use the individual info queries in OculusInputFunctionLibrary.")
     static bool GetHandSkeleton_Internal(const EControllerHand Hand, FQHandSkeleton& skeletonOut, const float worldToMeters);
 
     /** From the bone enum value return the standard bone name that would have been assigned to the Oculus example hand skeletal mesh */
-    UFUNCTION(BlueprintPure, Category = "QuestHands", meta = (WorldContext = "WorldContextObject"))
+    //UE_DEPRECATED(4.25, "UQuestHandsFunctions::GetHandBoneName has been deprecated. Please use the individual info queries in OculusInputFunctionLibrary.")
+    UFUNCTION(BlueprintPure, Category = "QuestHands", meta = (WorldContext = "WorldContextObject", DeprecatedFunction, DeprecationMessage = "Please use the individual info queries in OculusInputFunctionLibrary."))
     static FString GetHandBoneName(const EQHandBones bone, bool left);
 
     /**
@@ -241,6 +247,7 @@ public:
      * You must first specify a maximum level of foveation. Once this has been set, dynamic foveation can be enabled.
      * Results if the success value from the OVR API
     */
-    UFUNCTION(BlueprintCallable, Category="QuestHands")
+    UE_DEPRECATED(4.25, "UQuestHandsFunctions::SetDynamicFixedFoveatedEnabled has been deprecated. Please use OculusFunctionLibrary::SetFixedFoveatedRenderingLevel instead.")
+    UFUNCTION(BlueprintCallable, Category="QuestHands", meta = (DeprecatedFunction, DeprecationMessage = "Please use OculusFunctionLibrary::SetFixedFoveatedRenderingLevel instead."))
     static bool SetDynamicFixedFoveatedEnabled(bool enabled);
 };

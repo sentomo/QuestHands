@@ -35,10 +35,5 @@ public class QuestHands : ModuleRules
 					// Oculus's naughty little hack in the plugin... Access the private headers.
 					Path.GetFullPath(Path.Combine(EngineDirectory, "Plugins/Runtime/Oculus/OculusVR/Source/OculusHMD/Private")),
 				});
-
-		if (Target.Platform == UnrealTargetPlatform.Android)
-		{
-			AdditionalPropertiesForReceipt.Add("AndroidPlugin", Path.Combine(ModuleDirectory, "QuestHands_APL.xml"));
-		}
 	}
 }
